@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using Specflow_Selenium_PO_Example2.Utils;
+using OpenQA.Selenium.Support.UI;
 
 namespace Specflow_Selenium_PO_Example2.Pages
 {
@@ -17,31 +18,61 @@ namespace Specflow_Selenium_PO_Example2.Pages
         public BasePage() {
             driver = (IWebDriver)ScenarioContext.Current["driver"];
         }
-            
+
+        /// <summary>
+        /// Enters text into an element
+        /// </summary>
+        /// <param name="inputText">The text to input</param>
+        /// <param name="locator">The locator of the element</param>
         public void type (String inputText, By locator) {
             find(locator).SendKeys(inputText);
         }
+        /// <summary>
+        /// Waits up to 15 seconds for an element to be visible, then returns it
+        /// </summary>
+        /// <param name="locator">The WebDriver locator</param>
+        /// <returns>WebDriver IWebElement</returns>
         public IWebElement find(By locator)
         {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15);
+            wait.Until(ExpectedConditions.ElementIsVisible(locator));
             return driver.FindElement(locator);
         }
 
+        /// <summary>
+        /// Opens the BaseUrl appended with the page url
+        /// </summary>
+        /// <param name="url"></param>
         public void visit(String url)
         {
             driver.Navigate().GoToUrl(Config.BaseUrl + url);
                 
         }
 
+        /// <summary>
+        /// Left clicks an element
+        /// </summary>
+        /// <param name="locator"></param>
         public void click(By locator)
         {
             find(locator).Click();
         }
 
+        /// <summary>
+        /// gets the inner HTML test of an element
+        /// </summary>
+        /// <param name="locator">The locator of the element</param>
+        /// <returns></returns>
         public String getText(By locator)
         {
             return find(locator).Text;
         }
 
+        /// <summary>
+        /// Checks whether an element is displayed and enabled
+        /// </summary>
+        /// <param name="locator">The locator of the element</param>
+        /// <returns>True if the element is visible and enabled</returns>
         public Boolean isDisplayed(By locator)
         {
             try
@@ -55,7 +86,10 @@ namespace Specflow_Selenium_PO_Example2.Pages
         }
 
         
-
+        /// <summary>
+        /// Submits a form
+        /// </summary>
+        /// <param name="locator"></param>
         public void submit(By locator)
         {
             find(locator).Submit();
