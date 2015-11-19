@@ -1,4 +1,7 @@
 # SpecFlow Selenium Framework 
+
+## Author: @markwinspear
+
 ### Uses:  
 + SpecFlow (BDD)
 + Selenium (WebDriver)
