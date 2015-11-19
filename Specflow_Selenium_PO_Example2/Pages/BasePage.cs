@@ -24,7 +24,7 @@ namespace Specflow_Selenium_PO_Example2.Pages
         /// </summary>
         /// <param name="inputText">The text to input</param>
         /// <param name="locator">The element to enter text into</param>
-        public void type (String inputText, By locator) {
+        public void type (string inputText, By locator) {
             find(locator).SendKeys(inputText);
         }
         /// <summary>
@@ -34,19 +34,28 @@ namespace Specflow_Selenium_PO_Example2.Pages
         /// <returns>WebDriver IWebElement</returns>
         public IWebElement find(By locator)
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait.Until(ExpectedConditions.ElementIsVisible(locator));
             return driver.FindElement(locator);
         }
 
+        public void verifyPage(string pageTitle)
+        {
+            if (!pageTitle.Equals(driver.Title))
+            {
+                throw new System.InvalidOperationException("This page is not " + pageTitle + ". The title is: " + driver.Title);
+            }
+        }
+
         /// <summary>
-        /// Opens the BaseUrl appended with the page url
+        /// Opens the BaseUrl appended with the page url and verifies the 
+        /// page title is as expected.
         /// </summary>
         /// <param name="url"></param>
-        public void visit(String url)
+        public void visit(string url, string pageTitle)
         {
             driver.Navigate().GoToUrl(Config.BaseUrl + url);
-                
+            verifyPage(pageTitle);   
         }
 
         /// <summary>

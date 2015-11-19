@@ -16,6 +16,7 @@ namespace Specflow_Selenium_PO_Example2.Pages
         By loginButton = By.CssSelector("button[class='radius']");
         By successMessageLocator = By.CssSelector(".flash.success");
         By failureMessageLocator = By.CssSelector(".flash.error");
+        string pageTitle = "The Internet";
 
 
         public LoginPage()  {    
@@ -23,7 +24,7 @@ namespace Specflow_Selenium_PO_Example2.Pages
 
         public void with(String username, String password)
         {
-            visit("/login");
+            visit("/login", pageTitle);
             type(username, usernameField);
             type(password, passwordField);
         }
