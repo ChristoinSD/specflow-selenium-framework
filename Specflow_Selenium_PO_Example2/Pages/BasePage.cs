@@ -23,14 +23,14 @@ namespace Specflow_Selenium_PO_Example2.Pages
         /// Enters text into an element
         /// </summary>
         /// <param name="inputText">The text to input</param>
-        /// <param name="locator">The locator of the element</param>
+        /// <param name="locator">The element to enter text into</param>
         public void type (String inputText, By locator) {
             find(locator).SendKeys(inputText);
         }
         /// <summary>
         /// Waits up to 15 seconds for an element to be visible, then returns it
         /// </summary>
-        /// <param name="locator">The WebDriver locator</param>
+        /// <param name="locator">The element to find</param>
         /// <returns>WebDriver IWebElement</returns>
         public IWebElement find(By locator)
         {
@@ -52,7 +52,7 @@ namespace Specflow_Selenium_PO_Example2.Pages
         /// <summary>
         /// Left clicks an element
         /// </summary>
-        /// <param name="locator"></param>
+        /// <param name="locator">The element to click</param>
         public void click(By locator)
         {
             find(locator).Click();
@@ -61,7 +61,7 @@ namespace Specflow_Selenium_PO_Example2.Pages
         /// <summary>
         /// gets the inner HTML test of an element
         /// </summary>
-        /// <param name="locator">The locator of the element</param>
+        /// <param name="locator">The element which contains the text</param>
         /// <returns></returns>
         public String getText(By locator)
         {
@@ -71,7 +71,7 @@ namespace Specflow_Selenium_PO_Example2.Pages
         /// <summary>
         /// Checks whether an element is displayed and enabled
         /// </summary>
-        /// <param name="locator">The locator of the element</param>
+        /// <param name="locator">The element to be checked</param>
         /// <returns>True if the element is visible and enabled</returns>
         public Boolean isDisplayed(By locator)
         {
