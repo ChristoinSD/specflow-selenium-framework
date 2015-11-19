@@ -127,5 +127,19 @@ namespace Specflow_Selenium_PO_Example2.Pages
                 element.Click();
             }
         }
+
+        /// <summary>
+        /// Unchecks a checkbox or radio button. Performs no action if the element is already unchecked or selected
+        /// </summary>
+        /// <param name="locator">The element to be unchecked</param>
+        /// <returns></returns>
+        public void uncheck(By locator)
+        {
+            IWebElement element = find(locator);
+            if (element.Selected)
+            {
+                element.Click();
+            }
+        }
     }
 }
