@@ -141,5 +141,15 @@ namespace Specflow_Selenium_PO_Example2.Pages
                 element.Click();
             }
         }
+
+        /// <summary>
+        /// Verifies if a checkbox is checked
+        /// </summary>
+        /// <param name="locator">The element to verify</param>
+        /// <returns>True if checkbox is selected otherwise returns False</returns>
+        public Boolean isSelected(By locator)
+        {
+            return find(locator).Selected;
+        }
     }
 }
