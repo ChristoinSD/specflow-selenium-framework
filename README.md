@@ -1,6 +1,6 @@
 # SpecFlow Selenium Framework 
 
-## Author: @markwinspear
+## Author: https://github.com/markwinspear 
 
 ### Uses:  
 + SpecFlow (BDD)
