@@ -43,7 +43,7 @@ namespace Specflow_Selenium_PO_Example2.Pages
         {
             if (!pageTitle.Equals(driver.Title))
             {
-                throw new System.InvalidOperationException("This page is not " + pageTitle + ". The title is: " + driver.Title);
+                throw new InvalidOperationException("This page is not " + pageTitle + ". The title is: " + driver.Title);
             }
         }
 
@@ -102,6 +102,30 @@ namespace Specflow_Selenium_PO_Example2.Pages
         public void submit(By locator)
         {
             find(locator).Submit();
+        }
+
+        /// <summary>
+        /// Returns the destination URL of hyperlinks
+        /// </summary>
+        /// <param name="locator"></param>
+        /// <returns>the contents of the href attribute (for hyperlinks and images)</returns>
+        public string getLinkDestination(By locator)
+        {
+            return find(locator).GetAttribute("href");
+        }
+
+        /// <summary>
+        /// Checks a checkbox or radio button. Performs no action if the element is already checked or selected
+        /// </summary>
+        /// <param name="locator">The element to be checked</param>
+        /// <returns></returns>
+        public void check(By locator)
+        {
+            IWebElement element = find(locator);
+            if (!element.Selected) 
+            {
+                element.Click();
+            }
         }
     }
 }
