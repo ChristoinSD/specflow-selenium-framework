@@ -72,7 +72,7 @@ namespace Specflow_Selenium_PO_Example2.Pages
         /// </summary>
         /// <param name="locator">The element which contains the text</param>
         /// <returns></returns>
-        public String getText(By locator)
+        public string getText(By locator)
         {
             return find(locator).Text;
         }
@@ -82,11 +82,12 @@ namespace Specflow_Selenium_PO_Example2.Pages
         /// </summary>
         /// <param name="locator">The element to be checked</param>
         /// <returns>True if the element is visible and enabled</returns>
-        public Boolean isDisplayed(By locator)
+        public bool isDisplayed(By locator)
         {
             try
             {
-                return find(locator).Displayed && find(locator).Enabled;
+                IWebElement element = find(locator);
+                return element.Displayed && element.Enabled;
             }
             catch (NoSuchElementException ex)
             {
@@ -147,7 +148,7 @@ namespace Specflow_Selenium_PO_Example2.Pages
         /// </summary>
         /// <param name="locator">The element to verify</param>
         /// <returns>True if checkbox is selected otherwise returns False</returns>
-        public Boolean isSelected(By locator)
+        public bool isSelected(By locator)
         {
             return find(locator).Selected;
         }
