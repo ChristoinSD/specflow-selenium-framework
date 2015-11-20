@@ -49,7 +49,7 @@
 -- Change Execution "stopAfterFailures" attribute to 0 else will retry tests three times, this 
 -- will also tell SpecRun not to stop after any failures and continue.
 
-## Generate human-readable feature and scenario documentation linked to test results
+## Reporting (1): Generate human-readable feature and scenario documentation linked to test results
 Pickles displays excellent, simple to read html view of features and scenarios and also links to test results created when running from the NUnit console.
 + Install Pickles and Pickles Command Line via NuGet to generate human readable documentation.
 + Add location of pickles command line exe to the PATH environment variable
@@ -64,7 +64,7 @@ cd /D [insert full path to location of solution file (.sln)]
 ```
 + Find the documentation folder (should be in the same directory as your .sln file) and open index.html
 
-## Reporting
+## Reporting (2):
 + Standard NUnit reporting via Visual Studio is limited to that displayed in the Test explorer
 + To generate standard NUnit reports, you need to use NUnit console
 + To generate a test results xml file, execute via the Nunit console (http://www.specflow.org/documentation/Reporting/)
@@ -92,7 +92,7 @@ cd /d E:\"Google Drive"\Documents\Cucumber_Selenium_CSharp\Specflow_Selenium_PO_
  /xmlTestResult:"E:\Google Drive\Documents\Cucumber_Selenium_CSharp\Specflow_Selenium_PO_Example2\packages\NUnit.Runners.2.6.4\tools\TestResult.xml"  
 pause
 ```	
-Evaulation... This method means we get decent reporting (except Scenario Outlines) and can then use Saucery
+Evaulation... This method means we get decent reporting (except Scenario Outlines) and can then use Saucery, however, Option 1 provides more all-round documentation
 
 ## Notes:
 + The Hooks class contains code which runs before and after scenarios (and can be expanded to use other annotations).The scenarios are tagged with "web" to ensure that webdriver instances are only created for UI tests.  Use the tag @web when creating scenarios
