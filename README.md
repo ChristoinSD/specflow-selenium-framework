@@ -49,8 +49,17 @@
 -- Change Execution "stopAfterFailures" attribute to 0 else will retry tests three times, this 
 -- will also tell SpecRun not to stop after any failures and continue.
 
-## Reporting (1): Generate human-readable feature and scenario documentation linked to test results
+## Reporting (Common Steps): 
++ Standard NUnit reporting via Visual Studio is limited to that displayed in the Test explorer
++ To generate standard NUnit reports, you need to use NUnit console
++ To generate a test results xml file, execute via the Nunit console (http://www.specflow.org/documentation/Reporting/)
++ Open command line and cd /d to project directory  > packages > NUnit \NUnit.Runners.2.6.4\tools
++ run command  
+```nunit-console.exe /labels /out=TestResult.txt /xml=TestResult.xml "[path to project file]\BookShop.AcceptanceTests.csproj"```
+
+## Reporting (2): Generate human-readable feature and scenario documentation linked to test results
 Pickles displays excellent, simple to read html view of features and scenarios and also links to test results created when running from the NUnit console.
++ Execute steps in "Reporting (Common Steps) section above
 + Install Pickles and Pickles Command Line via NuGet to generate human readable documentation.
 + Add location of pickles command line exe to the PATH environment variable
 + Create bat file with contents:  
@@ -65,13 +74,7 @@ cd /D [insert full path to location of solution file (.sln)]
 + Find the documentation folder (should be in the same directory as your .sln file) and open index.html
 
 ## Reporting (2):
-+ Standard NUnit reporting via Visual Studio is limited to that displayed in the Test explorer
-+ To generate standard NUnit reports, you need to use NUnit console
-+ To generate a test results xml file, execute via the Nunit console (http://www.specflow.org/documentation/Reporting/)
-+ Open command line and cd /d to project directory  > packages > NUnit \NUnit.Runners.2.6.4\tools
-+ run command  
-```nunit-console.exe /labels /out=TestResult.txt /xml=TestResult.xml "[path to project file]\BookShop.AcceptanceTests.csproj"```
-
++ Execute steps in "Reporting (Common Steps) section above
 + Extending specflow report generation to use custom template from https://github.com/mvalipour/specflow-report-templates)
    * Add ../Nunit.Runners.2.6.4/tools to PATH environment variable in order to be able to run tools and store files in the right locations
   * Add ../Specflow/tools to PATH environment variable
@@ -92,7 +95,7 @@ cd /d E:\"Google Drive"\Documents\Cucumber_Selenium_CSharp\Specflow_Selenium_PO_
  /xmlTestResult:"E:\Google Drive\Documents\Cucumber_Selenium_CSharp\Specflow_Selenium_PO_Example2\packages\NUnit.Runners.2.6.4\tools\TestResult.xml"  
 pause
 ```	
-Evaulation... This method means we get decent reporting (except Scenario Outlines) and can then use Saucery, however, Option 1 provides more all-round documentation
+Evaulation... This method means we get decent reporting (except Scenario Outlines) and can then use Saucery, however, Option Pickles provides more all-round documentation
 
 ## Notes:
 + The Hooks class contains code which runs before and after scenarios (and can be expanded to use other annotations).The scenarios are tagged with "web" to ensure that webdriver instances are only created for UI tests.  Use the tag @web when creating scenarios
