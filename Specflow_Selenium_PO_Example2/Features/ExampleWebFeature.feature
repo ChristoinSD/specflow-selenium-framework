@@ -7,10 +7,10 @@ Feature: ExampleWebFeature
 Scenario Outline: Login
 	Given I have entered username '<username>' and password '<password>'
 	When I login
-	Then I should be informed that login '<result>'
+	Then I should be informed that login '<expected_result>'
 
 	Examples: 
-	| testing               | username | password             | result   |
+	| testing               | username | password             | expected_result   |
 	| valid combination     | tomsmith | SuperSecretPassword! | passed   |
 	| invalid combination 1 | test     | test                 | failed   |
 	| special characters    | $$$      | SuperSecretPassword! | failed   |

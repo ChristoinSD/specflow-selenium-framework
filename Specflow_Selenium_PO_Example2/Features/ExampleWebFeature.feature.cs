@@ -72,7 +72,7 @@ namespace Specflow_Selenium_PO_Example2.Features
         [NUnit.Framework.TestCaseAttribute("valid combination", "tomsmith", "SuperSecretPassword!", "passed", null)]
         [NUnit.Framework.TestCaseAttribute("invalid combination 1", "test", "test", "failed", null)]
         [NUnit.Framework.TestCaseAttribute("special characters", "$$$", "SuperSecretPassword!", "failed", null)]
-        public virtual void Login(string testing, string username, string password, string result, string[] exampleTags)
+        public virtual void Login(string testing, string username, string password, string expected_Result, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login", exampleTags);
 #line 7
@@ -82,7 +82,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.When("I login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
- testRunner.Then(string.Format("I should be informed that login \'{0}\'", result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("I should be informed that login \'{0}\'", expected_Result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
