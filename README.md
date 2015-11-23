@@ -131,4 +131,6 @@ Sauce labs integration (possibly using Saucery?)
 Selenium Grid
 Why using NUnit 2 and not 3? (3 = parallel testing (although specflow handles this I believe)) - Saucery tests look cleaner using NUnit 3
 
+##License
 
+Licensed under the [MIT license](https://opensource.org/licenses/MIT)
