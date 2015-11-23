@@ -66,11 +66,13 @@ Pickles displays excellent, simple to read html view of features and scenarios a
 ```
 cd /D [insert full path to location of solution file (.sln)]  
  .\packages\Pickles.CommandLine.[pickles version number]\tools\pickles.exe^  
+ --documentation-format=dhtml^
  --feature-directory=./Specflow_Selenium_PO_Example2\Features^  
  --output-directory=.\documentation^  
  --test-results-format=specrun^  
  --link-results-file=.\[directory to TestResult.xml]\TestResult.xml
 ```
++ documentation-format: "dhtml" = interactive with search, collapse and expand "html" = not interactive
 + Find the documentation folder (should be in the same directory as your .sln file) and open index.html
 
 ## Reporting (2):
