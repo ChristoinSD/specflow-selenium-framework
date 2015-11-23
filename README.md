@@ -92,7 +92,7 @@ cd /d E:\"Google Drive"\Documents\Cucumber_Selenium_CSharp\Specflow_Selenium_PO_
  Specflow_Selenium_PO_Example2.csproj^  
  /out:"TestResult.html"^  
  /xsltFile:"E:\Google Drive\Documents\Cucumber_Selenium_CSharp\specflow-report-templates\nunit-dream\ExecutionReport.xslt"^  
- /xmlTestResult:"E:\Google Drive\Documents\Cucumber_Selenium_CSharp\Specflow_Selenium_PO_Example2\packages\NUnit.Runners.2.6.4\tools\TestResult.xml"  
+ /xmlTestResult:TestResult.xml  
 pause
 ```	
 Evaulation... This method means we get decent reporting (except Scenario Outlines) and can then use Saucery, however, Option Pickles provides more all-round documentation
@@ -131,4 +131,6 @@ Sauce labs integration (possibly using Saucery?)
 Selenium Grid
 Why using NUnit 2 and not 3? (3 = parallel testing (although specflow handles this I believe)) - Saucery tests look cleaner using NUnit 3
 
+##License
 
+Licensed under the [MIT license](https://opensource.org/licenses/MIT)
