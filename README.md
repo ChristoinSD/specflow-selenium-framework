@@ -25,7 +25,7 @@
   * NUnitTestAdaptor
   * SpecFlow
   * Specflow.NUnit
-  * Selenuium http://nugetmusthaves.com/Tag/selenium
+  * Selenium http://nugetmusthaves.com/Tag/selenium
   * Selenium support package 
   
 7. Create folder 'dependencies'.  Download chrome, IE, Edge drivers directly here via NuGet packages 
