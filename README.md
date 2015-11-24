@@ -152,15 +152,13 @@ Specflow.exe if installed via NuGet ends up here: ..[project directory]\packages
 TO READ:
 https://github.com/alisterscott/SpecDriver
 Zukini (github)
-https://github.com/mvalipour/specflow-report-templates (specflow - pretty reports)
 
 DECISIONS:
 Reshaper (JetBrains extension) - investigate
 TFS integration for source control (currently git)
-Microsoft CI integration?
-Sauce labs integration (possibly using Saucery?)
 Selenium Grid
-Why using NUnit 2 and not 3? (3 = parallel testing (although specflow handles this I believe)) - Saucery tests look cleaner using NUnit 3
+Saucery a better solution for Saucelabs integration? Saucery tests look cleaner using NUnit 3
+Implement Hooks changes to maximise use of saucelabs plugin for Jenkins in being able to specify multiple platform, browsers and versions and executing all tests on each
 
 ##License
 
