@@ -46,7 +46,9 @@ namespace Specflow_Selenium_PO_Example2.Utils
                 capabilities.SetCapability("username", saucelabsAccountName);
                 capabilities.SetCapability("accessKey", saucelabsAccountKey);
                 capabilities.SetCapability("name", TestContext.CurrentContext.Test.Name);
-                capabilities.SetCapability("build", buildNumber);
+                //enables sauce plugin for Jenkins to display results on job page
+                capabilities.SetCapability("build", Environment.GetEnvironmentVariable("JENKINS_BUILD_NUMBER"));
+                
                 driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub/"), capabilities, TimeSpan.FromSeconds(600));
             }
 
