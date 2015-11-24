@@ -1,4 +1,4 @@
-# SpecFlow Selenium Framework 
+# SpecFlow Selenium Cloud Framework 
 
 ## Author: [Mark Winspear](https://github.com/markwinspear)
 
@@ -9,6 +9,7 @@
 + specflow-report-templates (for reporting) 
 + pickles (documentation generator for features and scenarios)
 + utilises Page Object Model pattern
++ runs tests locally or in saucelabs (account required)
 + takes screenshots on failure of web tests
 
 ## Background reading: 
@@ -48,6 +49,12 @@
 -- As per http://tech.opentable.co.uk/blog/2013/06/07/getting-started-with-specrun/
 -- Change Execution "stopAfterFailures" attribute to 0 else will retry tests three times, this 
 -- will also tell SpecRun not to stop after any failures and continue.
+
+## Running tests locally or in Saucelabs
++ Open the App.config file
++ Change host to either "localhost" or "saucelabs" (localhost will currently execute on Firefox which requires no additional drivers to be downloaded)
++ if using saucelabs, set platform, browser and browser version
+
 
 ## Reporting (Common Steps): 
 + Standard NUnit reporting via Visual Studio is limited to that displayed in the Test explorer
