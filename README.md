@@ -67,7 +67,7 @@
 + github
 + Configure the job
 + Select Git in 'Source Code Management', enter the repo URL and add credentials you use to sign into github
-+ Check that your gitignore file does not have patters for bin or debug folders else jenkins won't be able to run NUnit
++ Check that your gitignore file does not have patterns for bin or debug folders else jenkins won't be able to run NUnit
 + Enable sauce labs support and sauce connect
 + over-ride default authentication and enter sauce labs username and API key
 + Add build step to execute windows batch command
@@ -86,7 +86,7 @@ nunit-console.exe /labels /out=TestResult.txt /xml=TestResult.xml Specflow_Selen
 + run command  
 ```nunit-console.exe /labels /out=TestResult.txt /xml=TestResult.xml "[path to project file]\BookShop.AcceptanceTests.csproj"```
 
-## Reporting (2): Generate human-readable feature and scenario documentation linked to test results
+## Reporting (1): Generate human-readable feature and scenario documentation linked to test results
 Pickles displays excellent, simple to read html view of features and scenarios and also links to test results created when running from the NUnit console.
 + Execute steps in "Reporting (Common Steps) section above
 + Install Pickles and Pickles Command Line via NuGet to generate human readable documentation.
