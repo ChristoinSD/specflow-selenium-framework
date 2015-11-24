@@ -25,7 +25,7 @@ namespace Specflow_Selenium_PO_Example2.Utils
         static string baseUrl = ConfigurationManager.AppSettings["baseUrl"];
         static string saucelabsAccountName = ConfigurationManager.AppSettings["sauce_labs_account_name"];
         static string saucelabsAccountKey = ConfigurationManager.AppSettings["sauce_labs_account_key"];
-
+        static string buildNumber = ConfigurationManager.AppSettings["buildNumber"];
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
 
         [BeforeScenario("web")]
@@ -46,6 +46,7 @@ namespace Specflow_Selenium_PO_Example2.Utils
                 capabilities.SetCapability("username", saucelabsAccountName);
                 capabilities.SetCapability("accessKey", saucelabsAccountKey);
                 capabilities.SetCapability("name", TestContext.CurrentContext.Test.Name);
+                capabilities.SetCapability("build", buildNumber);
                 driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub/"), capabilities, TimeSpan.FromSeconds(600));
             }
 
