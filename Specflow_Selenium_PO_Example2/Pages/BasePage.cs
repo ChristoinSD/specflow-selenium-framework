@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using Specflow_Selenium_PO_Example2.Utils;
 using OpenQA.Selenium.Support.UI;
+using System.Configuration;
 
 namespace Specflow_Selenium_PO_Example2.Pages
 {
@@ -15,8 +16,10 @@ namespace Specflow_Selenium_PO_Example2.Pages
     class BasePage // :  Base
     {
         readonly IWebDriver driver;
-        public BasePage() {
+        private static string baseUrl;
+         public BasePage() {
             driver = (IWebDriver)ScenarioContext.Current["driver"];
+            baseUrl = ConfigurationManager.AppSettings["baseUrl"];
         }
 
         /// <summary>
@@ -54,7 +57,7 @@ namespace Specflow_Selenium_PO_Example2.Pages
         /// <param name="url"></param>
         public void visit(string url, string pageTitle)
         {
-            driver.Navigate().GoToUrl(Config.BaseUrl + url);
+            driver.Navigate().GoToUrl(baseUrl + url);
             verifyPage(pageTitle);   
         }
 

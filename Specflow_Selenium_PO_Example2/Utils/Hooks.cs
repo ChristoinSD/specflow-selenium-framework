@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
 using System;
@@ -15,29 +16,71 @@ namespace Specflow_Selenium_PO_Example2.Utils
     [Binding]
     public sealed class Hooks
     {
-        IWebDriver driver;
-        
+        static IWebDriver driver;
+        //load from app.config
+        static string host = ConfigurationManager.AppSettings["host"];
+        static string browser = ConfigurationManager.AppSettings["browser"];
+        static string platform = ConfigurationManager.AppSettings["platform"];
+        static string browserVersion = ConfigurationManager.AppSettings["browserVersion"];
+        static string baseUrl = ConfigurationManager.AppSettings["baseUrl"];
+        static string saucelabsAccountName = ConfigurationManager.AppSettings["sauce_labs_account_name"];
+        static string saucelabsAccountKey = ConfigurationManager.AppSettings["sauce_labs_account_key"];
+
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
 
         [BeforeScenario("web")]
-        public void BeforeWebScenario()
+        public static void BeforeWebScenario()
         {
+            if (host == "localhost")
+          {
                 driver = new FirefoxDriver();
-                ScenarioContext.Current["driver"] = driver;          
+          }
 
+            if (host == "saucelabs")
+            {
+                DesiredCapabilities capabilities = new DesiredCapabilities();
+
+                capabilities.SetCapability(CapabilityType.BrowserName, browser);
+                capabilities.SetCapability(CapabilityType.Platform, platform);
+                capabilities.SetCapability(CapabilityType.Version, browserVersion);
+                capabilities.SetCapability("username", saucelabsAccountName);
+                capabilities.SetCapability("accessKey", saucelabsAccountKey);
+                capabilities.SetCapability("name", TestContext.CurrentContext.Test.Name);
+                driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub/"), capabilities, TimeSpan.FromSeconds(600));
+            }
+
+            ScenarioContext.Current["driver"] = driver;
         }
 
         [AfterScenario("web")]
-        public void AfterScenario()
+        public static void AfterWebScenario()
         {
-            if (ScenarioContext.Current.TestError != null)
-            {
-                TakeScreenshot(driver);
-            }
-            driver.Quit();
-        }
+                if (host == "localhost")
+                {
 
-        private void TakeScreenshot(IWebDriver driver)
+                    if (ScenarioContext.Current.TestError != null)
+                    {
+                        TakeScreenshot(driver);
+                    }
+                    driver.Quit();
+                }
+
+                if (host == "saucelabs")
+                {
+                    bool passed = TestContext.CurrentContext.Result.Status == TestStatus.Passed;
+                    try
+                    {
+                        // Logs the result to Sauce Labs
+                        ((IJavaScriptExecutor)driver).ExecuteScript("sauce:job-result=" + (passed ? "passed" : "failed"));
+                    }
+                    finally
+                    {
+                        driver.Quit();
+                    }
+                }
+            }
+
+        private static void TakeScreenshot(IWebDriver driver)
         {
             try
             {
@@ -73,8 +116,6 @@ namespace Specflow_Selenium_PO_Example2.Utils
     }
 }
             
-        
-
-      //  public IWebDriver WebDriver { get; private set; }
+      
     
 
