@@ -25,7 +25,7 @@
   * NUnitTestAdaptor
   * SpecFlow
   * Specflow.NUnit
-  * Selenuium http://nugetmusthaves.com/Tag/selenium
+  * Selenium http://nugetmusthaves.com/Tag/selenium
   * Selenium support package 
   
 7. Create folder 'dependencies'.  Download chrome, IE, Edge drivers directly here via NuGet packages 
@@ -65,12 +65,14 @@ Pickles displays excellent, simple to read html view of features and scenarios a
 + Create bat file with contents:  
 ```
 cd /D [insert full path to location of solution file (.sln)]  
- .\packages\Pickles.CommandLine.2.0.0\tools\pickles.exe^  
+ .\packages\Pickles.CommandLine.[pickles version number]\tools\pickles.exe^  
+ --documentation-format=dhtml^
  --feature-directory=./Specflow_Selenium_PO_Example2\Features^  
  --output-directory=.\documentation^  
  --test-results-format=specrun^  
  --link-results-file=.\[directory to TestResult.xml]\TestResult.xml
 ```
++ documentation-format: "dhtml" = interactive with search, collapse and expand "html" = not interactive
 + Find the documentation folder (should be in the same directory as your .sln file) and open index.html
 
 ## Reporting (2):
@@ -92,7 +94,7 @@ cd /d E:\"Google Drive"\Documents\Cucumber_Selenium_CSharp\Specflow_Selenium_PO_
  Specflow_Selenium_PO_Example2.csproj^  
  /out:"TestResult.html"^  
  /xsltFile:"E:\Google Drive\Documents\Cucumber_Selenium_CSharp\specflow-report-templates\nunit-dream\ExecutionReport.xslt"^  
- /xmlTestResult:TestResult.xml  
+ /xmlTestResult:./Specflow_Selenium_PO_Example2\TestResult.xml  
 pause
 ```	
 Evaulation... This method means we get decent reporting (except Scenario Outlines) and can then use Saucery, however, Option Pickles provides more all-round documentation
