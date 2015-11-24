@@ -28,6 +28,8 @@
   * Specflow.NUnit
   * Selenium http://nugetmusthaves.com/Tag/selenium
   * Selenium support package 
+
+5. Add Reference (Project > Add Reference) for System.Configuration (enables the use of app.config file items) 
   
 7. Create folder 'dependencies'.  Download chrome, IE, Edge drivers directly here via NuGet packages 
   * Right click on the chromedriver.exe and select Properties
