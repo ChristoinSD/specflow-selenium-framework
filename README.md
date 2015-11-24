@@ -1,4 +1,4 @@
-# SpecFlow Selenium Framework 
+# SpecFlow Selenium Cloud Framework 
 
 ## Author: [Mark Winspear](https://github.com/markwinspear)
 
@@ -9,6 +9,7 @@
 + specflow-report-templates (for reporting) 
 + pickles (documentation generator for features and scenarios)
 + utilises Page Object Model pattern
++ runs tests locally or in saucelabs (account required)
 + takes screenshots on failure of web tests
 
 ## Background reading: 
@@ -56,6 +57,11 @@
 + Open command line and cd /d to project directory  > packages > NUnit \NUnit.Runners.2.6.4\tools
 + run command  
 ```nunit-console.exe /labels /out=TestResult.txt /xml=TestResult.xml "[path to project file]\BookShop.AcceptanceTests.csproj"```
+
+## Running tests locally or in Saucelabs
++ Open the App.config file
++ Change host to either "localhost" or "saucelabs" (localhost will currently execute on Firefox which requires no additional drivers to be downloaded)
++ if using saucelabs, set platform, browser and browser version
 
 ## Reporting (2): Generate human-readable feature and scenario documentation linked to test results
 Pickles displays excellent, simple to read html view of features and scenarios and also links to test results created when running from the NUnit console.
