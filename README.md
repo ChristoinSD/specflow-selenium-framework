@@ -141,12 +141,11 @@ Evaulation... This method means we get decent reporting (except Scenario Outline
 
 + If using SpecRun as the test runner, to customise reports: https://groups.google.com/forum/#!topic/specrun/8-G0TgOBUbY
 
-----
-
-NOTES:
 + Follow this setup to run reporting tools from the command line: http://stackoverflow.com/questions/11363202/specflow-fails-when-trying-to-generate-test-execution-report
+
 + Another change required if using Visual Studio 2015: 
 https://github.com/techtalk/SpecFlow/issues/471
+
 + Specflow.exe if installed via NuGet ends up here: ..[project directory]\packages\SpecFlow.1.9.0\tools
 
 TODO:
