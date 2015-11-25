@@ -1,4 +1,4 @@
-# SpecFlow Selenium Cloud Framework 
+# SpecFlow Selenium Cloud CI Framework 
 
 ## Author: [Mark Winspear](https://github.com/markwinspear)
 
