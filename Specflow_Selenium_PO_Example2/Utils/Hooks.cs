@@ -16,7 +16,8 @@ namespace Specflow_Selenium_PO_Example2.Utils
     [Binding]
     public sealed class Hooks
     {
-        static IWebDriver driver;
+        static IWebDriver localDriver;
+        static CustomRemoteDriver driver;
         //load from app.config
         static string host = ConfigurationManager.AppSettings["host"];
         static string browser = ConfigurationManager.AppSettings["browser"];
@@ -33,13 +34,12 @@ namespace Specflow_Selenium_PO_Example2.Utils
         {
             if (host == "localhost")
           {
-                driver = new FirefoxDriver();
+                localDriver = new FirefoxDriver();
           }
 
             if (host == "saucelabs")
             {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
-
                 capabilities.SetCapability(CapabilityType.BrowserName, browser);
                 capabilities.SetCapability(CapabilityType.Platform, platform);
                 capabilities.SetCapability(CapabilityType.Version, browserVersion);
@@ -48,8 +48,9 @@ namespace Specflow_Selenium_PO_Example2.Utils
                 capabilities.SetCapability("name", TestContext.CurrentContext.Test.Name);
                 //enables sauce plugin for Jenkins to display results on job page
                 capabilities.SetCapability("build", Environment.GetEnvironmentVariable("JENKINS_BUILD_NUMBER"));
+               
+                driver = new CustomRemoteDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub/"), capabilities, TimeSpan.FromSeconds(600));
                 
-                driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub/"), capabilities, TimeSpan.FromSeconds(600));
             }
 
             ScenarioContext.Current["driver"] = driver;
@@ -63,7 +64,7 @@ namespace Specflow_Selenium_PO_Example2.Utils
 
                     if (ScenarioContext.Current.TestError != null)
                     {
-                        TakeScreenshot(driver);
+                        TakeScreenshot(localDriver);
                     }
                     driver.Quit();
                 }
@@ -75,13 +76,21 @@ namespace Specflow_Selenium_PO_Example2.Utils
                     {
                         // Logs the result to Sauce Labs
                         ((IJavaScriptExecutor)driver).ExecuteScript("sauce:job-result=" + (passed ? "passed" : "failed"));
+                    if (ScenarioContext.Current.TestError != null)
+                    {
+                        TakeScreenshot(driver);
                     }
+                    string message = string.Format("SauceOnDemandSessionID=%1$s job-name=%2$s", driver.GetSessionId().ToString(),"some jobs name");
+                    Console.Write(message);
+                }
                     finally
                     {
                         driver.Quit();
                     }
                 }
             }
+
+        
 
         private static void TakeScreenshot(IWebDriver driver)
         {
