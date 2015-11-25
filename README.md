@@ -77,7 +77,7 @@ nunit-console.exe /labels /out=TestResult.txt /xml=TestResult.xml Specflow_Selen
   + Add post build action to publish NUnit results "TestResult.xml"
   + Add post build action to run sauce labs test publisher
 
-** After running the job, the sauce results will be contained in the job summary along with links to the video, screenshots and log.  The NUnit results will also be available **
+**After running the job, the sauce results will be contained in the job summary along with links to the video, screenshots and log.  The NUnit results will also be available**
 
 
 ## Reporting (Common Steps): 
