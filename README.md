@@ -47,11 +47,6 @@
 
 11. Follow these steps: http://ralucasuditu-softwaretesting.blogspot.co.uk/2015/06/write-your-first-test-with-specflow-and.html?m=1
 
-12. Install SpecRun (NuGet) for enhanced reporting and IDE intellisense, formatting etc
--- As per http://tech.opentable.co.uk/blog/2013/06/07/getting-started-with-specrun/
--- Change Execution "stopAfterFailures" attribute to 0 else will retry tests three times, this 
--- will also tell SpecRun not to stop after any failures and continue.
-
 ## Running tests locally or in Saucelabs
 + Open the App.config file
 + Change host to either "localhost" or "saucelabs" (localhost will currently execute on Firefox which requires no additional drivers to be downloaded)
@@ -147,6 +142,12 @@ Evaulation... This method means we get decent reporting (except Scenario Outline
 https://github.com/techtalk/SpecFlow/issues/471
 
 + Specflow.exe if installed via NuGet ends up here: ..[project directory]\packages\SpecFlow.1.9.0\tools
+ 
++ If executing using SpecRun:
+  + Install SpecRun (NuGet) for enhanced reporting and IDE intellisense, formatting etc
+  + As per http://tech.opentable.co.uk/blog/2013/06/07/getting-started-with-specrun/
+  + Change Execution "stopAfterFailures" attribute to 0 else will retry tests three times, this 
+  + will also tell SpecRun not to stop after any failures and continue.
 
 ## TODO:
 + Look at TeamCity integration
