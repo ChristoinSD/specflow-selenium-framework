@@ -67,7 +67,7 @@
 + github
 + Configure the job
 + Select Git in 'Source Code Management', enter the repo URL and add credentials you use to sign into github
-+ Check that your gitignore file does not have patters for bin or debug folders else jenkins won't be able to run NUnit
++ Check that your gitignore file does not have patterns for bin or debug folders else jenkins won't be able to run NUnit
 + Enable sauce labs support and sauce connect
 + over-ride default authentication and enter sauce labs username and API key
 + Add build step to execute windows batch command
@@ -86,7 +86,7 @@ nunit-console.exe /labels /out=TestResult.txt /xml=TestResult.xml Specflow_Selen
 + run command  
 ```nunit-console.exe /labels /out=TestResult.txt /xml=TestResult.xml "[path to project file]\BookShop.AcceptanceTests.csproj"```
 
-## Reporting (2): Generate human-readable feature and scenario documentation linked to test results
+## Reporting (1): Generate human-readable feature and scenario documentation linked to test results
 Pickles displays excellent, simple to read html view of features and scenarios and also links to test results created when running from the NUnit console.
 + Execute steps in "Reporting (Common Steps) section above
 + Install Pickles and Pickles Command Line via NuGet to generate human readable documentation.
@@ -152,15 +152,13 @@ Specflow.exe if installed via NuGet ends up here: ..[project directory]\packages
 TO READ:
 https://github.com/alisterscott/SpecDriver
 Zukini (github)
-https://github.com/mvalipour/specflow-report-templates (specflow - pretty reports)
 
 DECISIONS:
 Reshaper (JetBrains extension) - investigate
 TFS integration for source control (currently git)
-Microsoft CI integration?
-Sauce labs integration (possibly using Saucery?)
 Selenium Grid
-Why using NUnit 2 and not 3? (3 = parallel testing (although specflow handles this I believe)) - Saucery tests look cleaner using NUnit 3
+Saucery a better solution for Saucelabs integration? Saucery tests look cleaner using NUnit 3
+Implement Hooks changes to maximise use of saucelabs plugin for Jenkins in being able to specify multiple platform, browsers and versions and executing all tests on each
 
 ##License
 
