@@ -148,7 +148,7 @@ https://github.com/techtalk/SpecFlow/issues/471
 
 + Specflow.exe if installed via NuGet ends up here: ..[project directory]\packages\SpecFlow.1.9.0\tools
 
-TODO:
+## TODO:
 + TFS integration for source control (currently git)
 + Selenium Grid for local execution (LOW)
 + Implement Hooks changes to maximise use of saucelabs plugin for Jenkins in being able to specify multiple platform, browsers and versions and executing all tests on each
