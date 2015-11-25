@@ -9,8 +9,8 @@
 + specflow-report-templates (for reporting) 
 + pickles (documentation generator for features and scenarios)
 + utilises Page Object Model pattern
-+ runs tests locally or in saucelabs (account required)
 + can be run using Jenkins
++ runs tests locally or in saucelabs (account required) and reports results back to the Jenkins job
 + takes screenshots on failure of web tests
 
 ## Background reading: 
@@ -58,24 +58,26 @@
 + Change host to either "localhost" or "saucelabs" (localhost will currently execute on Firefox which requires no additional drivers to be downloaded)
 + if using saucelabs, set platform, browser and browser version
 
-## Running tests locally or in Saucelabs via Jenkins (local Jenkins here)
+## Running tests locally or in Saucelabs via Jenkins (local Jenkins used in this example)
 + Install jenkins
 + go to localhost:8080
 + install plugins via Manage Jenkins > Manage Plugins
-+ NUnit
-+ Sauce
-+ github
+  + NUnit
+  + Sauce
+  + github
 + Configure the job
-+ Select Git in 'Source Code Management', enter the repo URL and add credentials you use to sign into github
-+ Check that your gitignore file does not have patterns for bin or debug folders else jenkins won't be able to run NUnit
-+ Enable sauce labs support and sauce connect
-+ over-ride default authentication and enter sauce labs username and API key
-+ Add build step to execute windows batch command
+  + Select Git in 'Source Code Management', enter the repo URL and add credentials you use to sign into github
+  + Check that your gitignore file does not have patterns for bin or debug folders else jenkins won't be able to run NUnit
+  + Enable sauce labs support and sauce connect
+  + over-ride default authentication and enter sauce labs username and API key
+  + Add build step to execute windows batch command
 ```
 nunit-console.exe /labels /out=TestResult.txt /xml=TestResult.xml Specflow_Selenium_PO_Example2\bin\Debug\Specflow_Selenium_PO_Example2.dll
 ```
-+ Add post build action to publish NUnit results "TestResult.xml"
-+ Add post build action to run sauce labs test publisher
+  + Add post build action to publish NUnit results "TestResult.xml"
+  + Add post build action to run sauce labs test publisher
+
+** After running the job, the sauce results will be contained in the job summary along with links to the video, screenshots and log.  The NUnit results will also be available **
 
 
 ## Reporting (Common Steps): 
