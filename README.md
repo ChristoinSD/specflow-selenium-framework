@@ -141,25 +141,21 @@ Evaulation... This method means we get decent reporting (except Scenario Outline
 
 + If using SpecRun as the test runner, to customise reports: https://groups.google.com/forum/#!topic/specrun/8-G0TgOBUbY
 
-
-	 
 ----
 
-IMPORTANT: Follow this setup to run reporting tools from the command line: http://stackoverflow.com/questions/11363202/specflow-fails-when-trying-to-generate-test-execution-report
-IMPORTANT: Another change required if using Visual Studio 2015: https://github.com/techtalk/SpecFlow/issues/471
-Need to execute from command line?  http://www.marcusoft.net/2010/12/specflowexe-and-mstest.html
-Specflow.exe if installed via NuGet ends up here: ..[project directory]\packages\SpecFlow.1.9.0\tools
+NOTES:
++ Follow this setup to run reporting tools from the command line: http://stackoverflow.com/questions/11363202/specflow-fails-when-trying-to-generate-test-execution-report
++ Another change required if using Visual Studio 2015: 
+https://github.com/techtalk/SpecFlow/issues/471
++ Specflow.exe if installed via NuGet ends up here: ..[project directory]\packages\SpecFlow.1.9.0\tools
 
-TO READ:
-https://github.com/alisterscott/SpecDriver
-Zukini (github)
-
-DECISIONS:
-Reshaper (JetBrains extension) - investigate
-TFS integration for source control (currently git)
-Selenium Grid
-Saucery a better solution for Saucelabs integration? Saucery tests look cleaner using NUnit 3
-Implement Hooks changes to maximise use of saucelabs plugin for Jenkins in being able to specify multiple platform, browsers and versions and executing all tests on each
+TODO:
++ TFS integration for source control (currently git)
++ Selenium Grid for local execution (LOW)
++ Implement Hooks changes to maximise use of saucelabs plugin for Jenkins in being able to specify multiple platform, browsers and versions and executing all tests on each
++ Reshaper (JetBrains extension) - investigate
++ Look into https://github.com/alisterscott/SpecDriver
++ Look into Zukini (github)
 
 ##License
 
