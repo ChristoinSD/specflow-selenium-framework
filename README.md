@@ -1,4 +1,4 @@
-# SpecFlow Selenium Cloud Framework 
+# SpecFlow Selenium Cloud CI Framework 
 
 ## Author: [Mark Winspear](https://github.com/markwinspear)
 
@@ -9,13 +9,12 @@
 + specflow-report-templates (for reporting) 
 + pickles (documentation generator for features and scenarios)
 + utilises Page Object Model pattern
-+ runs tests locally or in saucelabs (account required)
 + can be run using Jenkins
++ runs tests locally or in saucelabs (account required) and reports results back to the Jenkins job
 + takes screenshots on failure of web tests
 
 ## Background reading: 
 * Getting started with Specflow: http://ralucasuditu-softwaretesting.blogspot.co.uk/2015/06/write-your-first-test-with-specflow-and.html?m=1
-* How the framework is organised and what is currently being considered for inclusion ![alt tag](https://github.com/markwinspear/specflow-selenium-framework/blob/master/Specflow_Selenium_PO_Example2/Test_Automation_Framework.vsdx)
 
 ##Getting started
 1. Install Visual Studio (Enterprise 2015)
@@ -48,34 +47,41 @@
 
 11. Follow these steps: http://ralucasuditu-softwaretesting.blogspot.co.uk/2015/06/write-your-first-test-with-specflow-and.html?m=1
 
-12. Install SpecRun (NuGet) for enhanced reporting and IDE intellisense, formatting etc
--- As per http://tech.opentable.co.uk/blog/2013/06/07/getting-started-with-specrun/
--- Change Execution "stopAfterFailures" attribute to 0 else will retry tests three times, this 
--- will also tell SpecRun not to stop after any failures and continue.
-
 ## Running tests locally or in Saucelabs
 + Open the App.config file
 + Change host to either "localhost" or "saucelabs" (localhost will currently execute on Firefox which requires no additional drivers to be downloaded)
 + if using saucelabs, set platform, browser and browser version
 
-## Running tests locally or in Saucelabs via Jenkins (local Jenkins here)
+## Running tests locally or in Saucelabs via Jenkins (local Jenkins used in this example)
 + Install jenkins
 + go to localhost:8080
 + install plugins via Manage Jenkins > Manage Plugins
-+ NUnit
-+ Sauce
-+ github
+  + NUnit
+  + Sauce
+  + github
 + Configure the job
-+ Select Git in 'Source Code Management', enter the repo URL and add credentials you use to sign into github
-+ Check that your gitignore file does not have patterns for bin or debug folders else jenkins won't be able to run NUnit
-+ Enable sauce labs support and sauce connect
-+ over-ride default authentication and enter sauce labs username and API key
-+ Add build step to execute windows batch command
+  + Select Git in 'Source Code Management', enter the repo URL and add credentials you use to sign into github
+  + Check that your gitignore file does not have patterns for bin or debug folders else jenkins won't be able to run NUnit
+  + Enable sauce labs support and sauce connect
+  + over-ride default authentication and enter sauce labs username and API key
+  + Add build step to execute windows batch command
 ```
 nunit-console.exe /labels /out=TestResult.txt /xml=TestResult.xml Specflow_Selenium_PO_Example2\bin\Debug\Specflow_Selenium_PO_Example2.dll
 ```
-+ Add post build action to publish NUnit results "TestResult.xml"
-+ Add post build action to run sauce labs test publisher
+  + Add post build action to publish NUnit results "TestResult.xml"
+  + Add post build action to run sauce labs test publisher
+
+**After running the job, the sauce results will be contained in the job summary along with links to the video, screenshots and log.  The NUnit results will also be available**
+
+## Running tests locally or in Saucelabs via TeamCity (local TeamCity used in this example)
++ Install Team City, selecting an available port for the service to run on
++ Add plugins to the server (download zips and place in Data Directory/plugins directory (navigate to Server Administration on Team City):
+  + Sauce OnDemand
++ restart teamcity (open cmd line in TeamCity/bin directory and run ```runall.bat stop``` then ```runall.bat start```
++ set up a new build and provide the github URL and credentials
++ manually set up the build steps
++ Step 1: NUnit - enter location of project .dll file 
+**NOTE: granular specflow report not displayed as part of the job and requires investigation. Currently only high level number of passes or fails is reported**
 
 
 ## Reporting (Common Steps): 
@@ -140,25 +146,28 @@ Evaulation... This method means we get decent reporting (except Scenario Outline
 
 + If using SpecRun as the test runner, to customise reports: https://groups.google.com/forum/#!topic/specrun/8-G0TgOBUbY
 
++ Follow this setup to run reporting tools from the command line: http://stackoverflow.com/questions/11363202/specflow-fails-when-trying-to-generate-test-execution-report
 
-	 
-----
++ Another change required if using Visual Studio 2015: 
+https://github.com/techtalk/SpecFlow/issues/471
 
-IMPORTANT: Follow this setup to run reporting tools from the command line: http://stackoverflow.com/questions/11363202/specflow-fails-when-trying-to-generate-test-execution-report
-IMPORTANT: Another change required if using Visual Studio 2015: https://github.com/techtalk/SpecFlow/issues/471
-Need to execute from command line?  http://www.marcusoft.net/2010/12/specflowexe-and-mstest.html
-Specflow.exe if installed via NuGet ends up here: ..[project directory]\packages\SpecFlow.1.9.0\tools
++ Specflow.exe if installed via NuGet ends up here: ..[project directory]\packages\SpecFlow.1.9.0\tools
+ 
++ If executing using SpecRun:
+  + Install SpecRun (NuGet) for enhanced reporting and IDE intellisense, formatting etc
+  + As per http://tech.opentable.co.uk/blog/2013/06/07/getting-started-with-specrun/
+  + Change Execution "stopAfterFailures" attribute to 0 else will retry tests three times, this 
+  + will also tell SpecRun not to stop after any failures and continue.
 
-TO READ:
-https://github.com/alisterscott/SpecDriver
-Zukini (github)
-
-DECISIONS:
-Reshaper (JetBrains extension) - investigate
-TFS integration for source control (currently git)
-Selenium Grid
-Saucery a better solution for Saucelabs integration? Saucery tests look cleaner using NUnit 3
-Implement Hooks changes to maximise use of saucelabs plugin for Jenkins in being able to specify multiple platform, browsers and versions and executing all tests on each
+## TODO:
++ Look at TeamCity integration
++ Look at executing pickles/ report unit batch command as part of the Jenkins build (how to link to test results)
++ TFS integration for source control (currently git)
++ Selenium Grid for local execution (LOW)
++ Implement Hooks changes to maximise use of saucelabs plugin for Jenkins in being able to specify multiple platform, browsers and versions and executing all tests on each
++ Reshaper (JetBrains extension) - investigate
++ Look into https://github.com/alisterscott/SpecDriver
++ Look into Zukini (github)
 
 ##License
 
