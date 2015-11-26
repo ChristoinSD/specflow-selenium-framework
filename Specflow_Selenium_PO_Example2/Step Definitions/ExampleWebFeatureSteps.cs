@@ -10,10 +10,10 @@ namespace Specflow_Selenium_PO_Example2.Step_Definitions
         LoginPage login;
 
         [Given(@"I have entered username '(.*)' and password '(.*)'")]
-        public void GivenIHaveEnteredUsernameAndPassword(string p0, string p1)
+        public void GivenIHaveEnteredUsernameAndPassword(string username, string password)
         {
             login = new LoginPage();
-            login.with(p0, p1);
+            login.with(username, password);
         }
 
         [When(@"I login")]
@@ -24,9 +24,9 @@ namespace Specflow_Selenium_PO_Example2.Step_Definitions
 
 
         [Then(@"I should be informed that login '(.*)'")]
-        public void ThenIShouldBeInformedThatLogin(String p0)
+        public void ThenIShouldBeInformedThatLogin(String status)
         {
-            switch (p0)
+            switch (status)
             {
                 case "passed":
                     login.successMessagePresent();

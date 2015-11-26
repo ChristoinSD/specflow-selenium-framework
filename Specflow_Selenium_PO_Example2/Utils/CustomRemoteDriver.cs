@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Specflow_Selenium_PO_Example2.Utils
 {
+    /// <summary>
+    /// Subclasses RemoteWebDriver in order to return the session id for sauce labs use
+    /// </summary>
     class CustomRemoteDriver : RemoteWebDriver 
     {
         CustomRemoteDriver(ICapabilities desiredCapabilities) : base(desiredCapabilities)
@@ -26,6 +29,10 @@ namespace Specflow_Selenium_PO_Example2.Utils
     {
         }
 
+        /// <summary>
+        /// Method to return the webdriver session id
+        /// </summary>
+        /// <returns>webdriver sessionid</returns>
         public string GetSessionId()
         {
             return base.SessionId.ToString();
