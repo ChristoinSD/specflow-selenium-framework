@@ -75,15 +75,13 @@ nunit-console.exe /labels /out=TestResult.txt /xml=TestResult.xml Specflow_Selen
 
 ## Running tests locally or in Saucelabs via TeamCity (local TeamCity used in this example)
 + Install Team City, selecting an available port for the service to run on
-+ Add plugins (download zips and place in TeamCity~/.BuildServer/plugins directory
++ Add plugins to the server (download zips and place in Data Directory/plugins directory (navigate to Server Administration on Team City):
   + Sauce OnDemand
-+ restart teamcity
++ restart teamcity (open cmd line in TeamCity/bin directory and run ```runall.bat stop``` then ```runall.bat start```
 + set up a new build and provide the github URL and credentials
 + manually set up the build steps
-+ Step 1: Command Line... 
-```
-nunit-console.exe /labels /out=TestResult.txt /xml=TestResult.xml Specflow_Selenium_PO_Example2\bin\Debug\Specflow_Selenium_PO_Example2.dll
-```
++ Step 1: NUnit - enter location of project .dll file 
+**NOTE: granular specflow report not displayed as part of the job and requires investigation. Currently only high level number of passes or fails is reported**
 
 
 ## Reporting (Common Steps): 
