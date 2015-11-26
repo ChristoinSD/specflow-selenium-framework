@@ -73,6 +73,18 @@ nunit-console.exe /labels /out=TestResult.txt /xml=TestResult.xml Specflow_Selen
 
 **After running the job, the sauce results will be contained in the job summary along with links to the video, screenshots and log.  The NUnit results will also be available**
 
+## Running tests locally or in Saucelabs via TeamCity (local TeamCity used in this example)
++ Install Team City, selecting an available port for the service to run on
++ Add plugins (download zips and place in TeamCity~/.BuildServer/plugins directory
+  + Sauce OnDemand
++ restart teamcity
++ set up a new build and provide the github URL and credentials
++ manually set up the build steps
++ Step 1: Command Line... 
+```
+nunit-console.exe /labels /out=TestResult.txt /xml=TestResult.xml Specflow_Selenium_PO_Example2\bin\Debug\Specflow_Selenium_PO_Example2.dll
+```
+
 
 ## Reporting (Common Steps): 
 + Standard NUnit reporting via Visual Studio is limited to that displayed in the Test explorer
