@@ -37,8 +37,7 @@ namespace Specflow_Selenium_PO_Example2.Utils
                 localDriver = new FirefoxDriver();
                 ScenarioContext.Current["driver"] = localDriver;
             }
-
-            if (host == "saucelabs")
+            else if (host == "saucelabs")
             {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
                 capabilities.SetCapability(CapabilityType.BrowserName, browser);
@@ -52,10 +51,7 @@ namespace Specflow_Selenium_PO_Example2.Utils
 
                 driver = new CustomRemoteDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub/"), capabilities, TimeSpan.FromSeconds(600));
                 ScenarioContext.Current["driver"] = driver;
-            }
-
-            
-            
+            }  
         }
 
         [AfterScenario("web")]
@@ -71,7 +67,7 @@ namespace Specflow_Selenium_PO_Example2.Utils
                 localDriver.Quit();
             }
 
-            if (host == "saucelabs")
+            else if (host == "saucelabs")
             {
                 bool passed = TestContext.CurrentContext.Result.Status == TestStatus.Passed;
                 try
