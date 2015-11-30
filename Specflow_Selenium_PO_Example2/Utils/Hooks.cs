@@ -23,7 +23,7 @@ namespace Specflow_Selenium_PO_Example2.Utils
         static string browser = ConfigurationManager.AppSettings["browser"];
         static string platform = ConfigurationManager.AppSettings["platform"];
         static string browserVersion = ConfigurationManager.AppSettings["browserVersion"];
-        static string baseUrl = ConfigurationManager.AppSettings["baseUrl"];
+       // static string baseUrl = ConfigurationManager.AppSettings["baseUrl"];
         static string saucelabsAccountName = ConfigurationManager.AppSettings["sauce_labs_account_name"];
         static string saucelabsAccountKey = ConfigurationManager.AppSettings["sauce_labs_account_key"];
 
@@ -66,6 +66,7 @@ namespace Specflow_Selenium_PO_Example2.Utils
                 }
                 localDriver.Quit();
             }
+
 
             else if (host == "saucelabs")
             {
