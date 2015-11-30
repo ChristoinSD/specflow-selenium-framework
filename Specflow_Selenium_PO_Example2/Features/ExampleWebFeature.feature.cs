@@ -71,6 +71,9 @@ namespace Specflow_Selenium_PO_Example2.Features
         [NUnit.Framework.DescriptionAttribute("Login")]
         [NUnit.Framework.CategoryAttribute("web")]
         [NUnit.Framework.TestCaseAttribute("valid combination", "tomsmith", "SuperSecretPassword!", "passed", null)]
+        [NUnit.Framework.TestCaseAttribute("invalid combination 1", "test", "test", "failed", null)]
+        [NUnit.Framework.TestCaseAttribute("special characters", "$$$", "SuperSecretPassword!", "failed", null)]
+        [NUnit.Framework.TestCaseAttribute("set to delberately fail", "abc", "def", "passed", null)]
         public virtual void Login(string testing, string username, string password, string expected_Result, string[] exampleTags)
         {
             string[] @__tags = new string[] {
