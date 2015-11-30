@@ -10,7 +10,8 @@ Scenario Outline: Login
 	Then I should be informed that login '<expected_result>'
 
 	Examples: 
-	| testing               | username | password             | expected_result   |
-	| valid combination     | tomsmith | SuperSecretPassword! | passed   |
-	| invalid combination 1 | test     | test                 | failed   |
-	| special characters    | $$$      | SuperSecretPassword! | failed   |
+	| testing                 | username | password             | expected_result |
+	| valid combination       | tomsmith | SuperSecretPassword! | passed          |
+	| invalid combination 1   | test     | test                 | failed          |
+	| special characters      | $$$      | SuperSecretPassword! | failed          |
+	| set to delberately fail | abc      | def                  | passed          |
