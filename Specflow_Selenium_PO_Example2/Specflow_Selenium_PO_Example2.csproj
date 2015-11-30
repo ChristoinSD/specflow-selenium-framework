@@ -90,6 +90,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>example.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\example2.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>example.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\ExampleWebFeature.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
