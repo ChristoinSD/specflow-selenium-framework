@@ -69,20 +69,24 @@ namespace Specflow_Selenium_PO_Example2.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Login")]
+        [NUnit.Framework.CategoryAttribute("web")]
         [NUnit.Framework.TestCaseAttribute("valid combination", "tomsmith", "SuperSecretPassword!", "passed", null)]
-        [NUnit.Framework.TestCaseAttribute("invalid combination 1", "test", "test", "failed", null)]
-        [NUnit.Framework.TestCaseAttribute("special characters", "$$$", "SuperSecretPassword!", "failed", null)]
-        [NUnit.Framework.TestCaseAttribute("set to delberately fail", "abc", "def", "passed", null)]
         public virtual void Login(string testing, string username, string password, string expected_Result, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login", exampleTags);
-#line 7
-this.ScenarioSetup(scenarioInfo);
+            string[] @__tags = new string[] {
+                    "web"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login", @__tags);
 #line 8
- testRunner.Given(string.Format("I have entered username \'{0}\' and password \'{1}\'", username, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 9
- testRunner.When("I login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given(string.Format("I have entered username \'{0}\' and password \'{1}\'", username, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 10
+ testRunner.When("I login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 11
  testRunner.Then(string.Format("I should be informed that login \'{0}\'", expected_Result), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

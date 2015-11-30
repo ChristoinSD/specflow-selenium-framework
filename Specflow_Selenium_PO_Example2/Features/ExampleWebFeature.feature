@@ -4,6 +4,7 @@ Feature: ExampleWebFeature
 	As a tester
 	I want to be able to perform some automated tasks
 
+@web
 Scenario Outline: Login
 	Given I have entered username '<username>' and password '<password>'
 	When I login
@@ -12,6 +13,6 @@ Scenario Outline: Login
 	Examples: 
 	| testing                 | username | password             | expected_result |
 	| valid combination       | tomsmith | SuperSecretPassword! | passed          |
-	| invalid combination 1   | test     | test                 | failed          |
-	| special characters      | $$$      | SuperSecretPassword! | failed          |
-	| set to delberately fail | abc      | def                  | passed          |
+#	| invalid combination 1   | test     | test                 | failed          |
+#	| special characters      | $$$      | SuperSecretPassword! | failed          |
+#	| set to delberately fail | abc      | def                  | passed          |
