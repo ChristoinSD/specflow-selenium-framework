@@ -26,16 +26,17 @@ namespace Specflow_Selenium_PO_Example2.Utils
         static string baseUrl = ConfigurationManager.AppSettings["baseUrl"];
         static string saucelabsAccountName = ConfigurationManager.AppSettings["sauce_labs_account_name"];
         static string saucelabsAccountKey = ConfigurationManager.AppSettings["sauce_labs_account_key"];
-       
+
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
 
         [BeforeScenario("web")]
         public static void BeforeWebScenario()
         {
             if (host == "localhost")
-          {
+            {
                 localDriver = new FirefoxDriver();
-          }
+                ScenarioContext.Current["driver"] = localDriver;
+            }
 
             if (host == "saucelabs")
             {
@@ -48,49 +49,50 @@ namespace Specflow_Selenium_PO_Example2.Utils
                 capabilities.SetCapability("name", TestContext.CurrentContext.Test.Name);
                 //enables sauce plugin for Jenkins to display results on job page
                 capabilities.SetCapability("build", Environment.GetEnvironmentVariable("JENKINS_BUILD_NUMBER"));
-               
+
                 driver = new CustomRemoteDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub/"), capabilities, TimeSpan.FromSeconds(600));
-                
+                ScenarioContext.Current["driver"] = driver;
             }
 
-            ScenarioContext.Current["driver"] = driver;
+            
+            
         }
 
         [AfterScenario("web")]
         public static void AfterWebScenario()
         {
-                if (host == "localhost")
-                {
+            if (host == "localhost")
+            {
 
-                    if (ScenarioContext.Current.TestError != null)
-                    {
-                        TakeScreenshot(localDriver);
-                    }
-                    driver.Quit();
+                if (ScenarioContext.Current.TestError != null)
+                {
+                    TakeScreenshot(driver);
                 }
+                localDriver.Quit();
+            }
 
-                if (host == "saucelabs")
+            if (host == "saucelabs")
+            {
+                bool passed = TestContext.CurrentContext.Result.Status == TestStatus.Passed;
+                try
                 {
-                    bool passed = TestContext.CurrentContext.Result.Status == TestStatus.Passed;
-                    try
-                    {
-                        // Logs the result to Sauce Labs
-                        ((IJavaScriptExecutor)driver).ExecuteScript("sauce:job-result=" + (passed ? "passed" : "failed"));
+                    // Logs the result to Sauce Labs
+                    ((IJavaScriptExecutor)driver).ExecuteScript("sauce:job-result=" + (passed ? "passed" : "failed"));
                     if (ScenarioContext.Current.TestError != null)
                     {
                         TakeScreenshot(driver);
                     }
-                    string message = string.Format("SauceOnDemandSessionID=%1$s job-name=%2$s", driver.GetSessionId().ToString(),"some jobs name");
+                    string message = string.Format("SauceOnDemandSessionID=%1$s job-name=%2$s", driver.GetSessionId().ToString(), "some jobs name");
                     Console.Write(message);
                 }
-                    finally
-                    {
-                        driver.Quit();
-                    }
+                finally
+                {
+                    driver.Quit();
                 }
             }
+        }
 
-        
+
 
         private static void TakeScreenshot(IWebDriver driver)
         {
@@ -125,10 +127,9 @@ namespace Specflow_Selenium_PO_Example2.Utils
                 Console.WriteLine("Error while taking screenshot: {0}", ex);
             }
         }
-
-        
     }
 }
+
             
       
     
