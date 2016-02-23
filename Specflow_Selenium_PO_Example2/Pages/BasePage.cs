@@ -79,6 +79,34 @@ namespace Specflow_Selenium_PO_Example2.Pages
         {
             return find(locator).Text;
         }
+        /// <summary>
+        /// Validate if Element present in provided list of Elements
+        /// </summary>
+        /// <param name="locator"></param>
+        /// <param name="provider"></param>
+        /// <returns></returns>
+        public bool isElementPresent(By locator, string provider)
+        {
+
+            IList<IWebElement> subelements = driver.FindElements(locator);
+            for (int i = 0; i < subelements.Count; i++)
+            {
+
+                //Console.Write(subelements[i].Text);
+
+                if (subelements[i].Text == provider)
+                {
+                    Console.Write("Provider Found " + subelements[i].Text);
+                    return true;
+
+                }
+
+
+
+            }
+            return false;
+        }
+
 
         /// <summary>
         /// Checks whether an element is displayed and enabled
