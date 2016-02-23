@@ -83,9 +83,9 @@ namespace Specflow_Selenium_PO_Example2.Pages
         /// Validate if Element present in provided list of Elements
         /// </summary>
         /// <param name="locator"></param>
-        /// <param name="provider"></param>
+        /// <param name="expectedText"></param>
         /// <returns></returns>
-        public bool isElementPresent(By locator, string provider)
+        public bool isElementPresent(By locator, string expectedText)
         {
 
             IList<IWebElement> subelements = driver.FindElements(locator);
@@ -94,9 +94,9 @@ namespace Specflow_Selenium_PO_Example2.Pages
 
                 //Console.Write(subelements[i].Text);
 
-                if (subelements[i].Text == provider)
+                if (subelements[i].Text == expectedText)
                 {
-                    Console.Write("Provider Found " + subelements[i].Text);
+                    Console.Write("Element Found " + subelements[i].Text);
                     return true;
 
                 }
